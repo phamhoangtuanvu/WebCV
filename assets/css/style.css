@@ -10,6 +10,7 @@
     --font-size-s: 15px;
     --font-size-m: 24px;
     --font-size-l: 30px;
+    --font-family: 'Montserrat',Arial,Helvetica,sans-serif;
 }
 
 html {
@@ -110,6 +111,54 @@ body {
     transition: .0s;
 }
 
+
+.header .menu {
+    width: 60px;
+    border-radius: 40px;
+    background-color: var(--secondary-color);
+    position: absolute;
+    right: 120px;
+    top: 10vh;
+    color: #fff;
+}
+
+.header .menu ul {
+    list-style: none;
+    
+    font-size: var(--font-size-m);
+}
+
+.header .menu li{ 
+    margin: 25px 0;
+    position: relative;
+}
+
+.header .menu li:active{
+    transform: scale(0.95);
+}
+
+.header .menu li.active .menu-icon,
+.header .menu li:hover .menu-icon{ 
+    color: var(--primary-color);
+}
+
+.header .menu li:hover .menu-text { 
+    visibility: visible;
+}
+
+.header .menu .menu-text{
+    visibility: hidden;
+    position: absolute;
+    min-width: 120px ;
+    top: 0px;
+    right: 70px;
+    font-size: 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 3px 4px;
+    border-radius: 4px;
+    /* transition: visibility 0.3s linear; */
+}
 
 /* Container */
 
@@ -255,7 +304,7 @@ body {
 }
 
 .container #resume .timeline{
-    flex: 1;
+    flex: 2;
     margin-top: -20px;
 }
 
@@ -394,13 +443,15 @@ body {
 .container #portfolio .img-cover {
     overflow: hidden;
     border-radius: 20px;
-
+    height: 125px;
 }
 
 .container #portfolio .img-cover img{
     width: 100%;
+    height: 100%;
     border-radius: 20px;
     transition: transform .5s;
+    object-fit: cover;
 }
 
 .container #portfolio .img-cover img:hover{
@@ -411,6 +462,82 @@ body {
     margin: 10px 0;
     text-align: center;
 }
+
+
+.portfolio-detail {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #444444;
+    z-index: 1000;
+    padding: 100px 200px;
+    color: #fff;
+    line-height: 25px;
+    transform: translate(-100%);
+}
+
+.portfolio-detail .close-icon {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+.portfolio-detail .flex-box {
+    margin-top: 40px;
+}
+
+.portfolio-detail .content{
+    width: 65%;
+    flex: 7;
+    float: left;
+    margin-right: 0px;
+}
+
+.portfolio-detail .content img{
+    width: 100%;
+}
+
+.portfolio-detail .title {
+    color: var(--primary-color);
+}
+
+.portfolio-detail .desc {
+    float: right;
+    width: 30%;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 30px;
+    
+}
+
+.portfolio-detail .desc h3{
+    color: var(--primary-color);
+}
+
+.portfolio-detail .desc a{
+    color: var(--primary-color);
+}
+
+.portfolio-detail .desc p{
+    margin: 10px 0;
+}
+
+.portfolio-detail .desc ul{
+    margin-top: 10px;
+}
+.portfolio-detail .desc li{
+    list-style: none;
+    display: inline-block;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin: 0 5px 5px 0;
+}
+
+
 
 @keyframes shrinkOut {
     from{
@@ -442,10 +569,10 @@ body {
     }    
 }
 
-@keyframes slideInLeft {
+@keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(calc(100% + 320px));
+        transform: translateX(calc(-100%));
     }
     to {
         opacity: 1;
@@ -465,7 +592,8 @@ body {
 
 .container #contact .flex-box {
     display: flex;
-
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 .container #contact .flex-box .info {
@@ -473,6 +601,7 @@ body {
     flex-direction: column;
     gap: 20px;
     justify-content: space-between;
+    flex: 3;
 }
 
 .container #contact .flex-box .info-block {
@@ -481,18 +610,47 @@ body {
     border-radius: 10px;
     text-align: center;
     flex: 1;
-    min-width: 250px;
-
 }
 
 .container #contact .info-block .icon{
     font-size: var(--font-size-l);
+    color: var(--primary-color);
 }
 
 .container #contact .info-block .text{
     margin-top: 10px;
 }
 
+.container #contact .form{
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 300px;
+}
+
+.container #contact .form h3{
+    margin: 0;
+}
+
+.container #contact .form textarea,
+.container #contact .form button,
+.container #contact .form input{
+    display: block;
+    margin: 20px 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    font-family: var(--font-family);
+}
+
+.container #contact .form button {
+    width: 20%;
+    background-color: var(--primary-color);
+}
 
 /* Nav */
 .nav{
@@ -503,59 +661,6 @@ body {
     flex-direction: column;
     justify-content: flex-end;
 }
-
-.header .menu {
-    width: 60px;
-    border-radius: 40px;
-    background-color: var(--secondary-color);
-    position: absolute;
-    right: 120px;
-    top: 10vh;
-}
-
-.header .menu ul {
-    list-style: none;
-    
-    font-size: var(--font-size-m);
-}
-
-.header .menu a {
-    color: #fff;
-}
-
-.header .menu li{ 
-    margin: 25px 0;
-    position: relative;
-}
-
-.header .menu li:active{
-    transform: scale(0.95);
-}
-
-.header .menu li.active .menu-icon,
-.header .menu li:hover .menu-icon{ 
-    color: var(--primary-color);
-}
-
-.header .menu li:hover .menu-text { 
-    visibility: visible;
-}
-
-.header .menu .menu-text{
-    visibility: hidden;
-    position: absolute;
-    min-width: 120px ;
-    top: 0px;
-    right: 70px;
-    font-size: 20px;
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 3px 4px;
-    border-radius: 4px;
-    /* transition: visibility 0.3s linear; */
-}
-
-
 
 .nav .arrow {
     width: 60px;
@@ -778,9 +883,6 @@ body {
         width: 50%;
     }
 
-    .download {
-        
-    }
     
     .header .menu {
         position: relative;
@@ -848,10 +950,6 @@ body {
         background-color: rgb(0 0 0 / 0%);
     }
 
-    :root {
-
-    }
-
     .container #home h2 {
         font-size: 30px;
         line-height: 50px;
@@ -874,13 +972,20 @@ body {
         background-color: #04b4e0;
         transform: scale(0.8);
     }
+
+    .container #contact .flex-box {
+        flex-direction: column;
+    }
+
+    .container #contact .flex-box button {
+        width: 100%;
+    }
+
 }
 
 
 /* Tablet: width >= 740px and < 1024px */
 @media (min-width: 740px) and (max-width: 1024px) {
-
-
 
     .header {
         position: absolute;
@@ -888,17 +993,37 @@ body {
         height: 100%;
         border-radius: 0;
         overflow-y: scroll;
+        width: 80%;
         transform: translateX(100%);
     }
+    
+    @keyframes openMenuToggle {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes closeMenuToggle {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
 
     .avatar img  {
         width: 50%;
     }
 
-    .download {
-        
-    }
-    
     .header .menu {
         position: relative;
         top: 0;
@@ -927,15 +1052,71 @@ body {
         
     }
 
-    .header .menu-toggle {
+    .header .menu li.active .menu-text{
+        color: var(--primary-color);
+    }
+
+
+    .menu-toggle {
         position: absolute;
         top: 20px;
-        right: 20px;
+        right: 10px;
         font-size: 20px;
-        background-color: #fff;
-        padding: 10px;
-        
+        background-color: var(--primary-color);
+        color: #fff;
+        width: 60px;
+        border-radius: 60px;
+        text-align: center;
+        height: 60px;
+        padding: 18px;
+        transform: scale(0.8);
+        z-index: 1000;
     }
+
+    #main {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .container {
+        height: 100%;
+        background-color: transparent;
+    }
+
+    .container .content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        background-color: rgb(0 0 0 / 0%);
+    }
+
+    .container #home h2 {
+        font-size: 30px;
+        line-height: 50px;
+        margin-bottom: 20px;
+    }
+
+    .container #portfolio .portfolio-list {
+        justify-content: center;
+    }
+
+
+    .nav {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        height: auto;
+    }
+
+    .nav .arrow {
+        background-color: #04b4e0;
+        transform: scale(0.8);
+    }
+
+    .container #contact .flex-box {
+        flex-direction: column;
+    }
+    
 }
 
 
